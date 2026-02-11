@@ -1,6 +1,6 @@
 <h1>ExpNo 5 : Implement Simple Hill Climbing Algorithm</h1> 
-<h3>Name:             </h3>
-<h3>Register Number:             </h3>
+<h3>Name:  SHARMILA P      </h3>
+<h3>Register Number:    212224220094         </h3>
 <H3>Aim:</H3>
 <p>Implement Simple Hill Climbing Algorithm and Generate a String by Mutating a Single Character at each iteration </p>
 <h2> Theory: </h2>
@@ -38,6 +38,81 @@ Feedback is provided in terms of heuristic function
 <h3>Step-4:</h3>
 <p> Lopp Step -2 and Step-3  until we achieve the score to be Zero to achieve Global Minima.</p>
 
+<h3>PROGRAM:</h3>
+
+```
+import random
+
+import string
+
+def generate_random_solution(ans):
+
+    l = len(ans)
+
+    return [random.choice(string.printable) for _ in range(l)]
+
+
+def mutate(soln):
+
+    ind = random.randint(0, len(soln) - 1)
+
+    soln[ind] = random.choice(string.printable)
+
+    return soln
+
+def evaluate(solution, answer):
+
+    diff = 0
+
+    for i in range(len(solution)):
+
+        diff += abs(ord(answer[i]) - ord(solution[i]))
+
+    return diff
+
+def simplehillclimbing():
+
+    answer = input("Enter target string: ")
+
+    best = generate_random_solution(answer)
+
+    best_score = evaluate(best, answer)
+
+    iterations = 0
+
+    max_iterations = 100000
+
+    while best_score != 0 and iterations < max_iterations:
+
+        print("Score:", best_score, "String:", ''.join(best))
+
+        new_soln = mutate(best.copy())
+
+        score = evaluate(new_soln, answer)
+
+        if score < best_score:
+
+            best = new_soln
+
+            best_score = score
+
+        iterations += 1
+
+    if best_score == 0:
+
+        print("\nTarget Found:", ''.join(best))
+
+    else:
+
+        print("\nStopped after max iterations.")
+
+        print("Best found:", ''.join(best))
+
+simplehillclimbing()
+
+```
+
+
 <hr>
 <h2>Sample Input and Output</h2>
 <h2>Sample String:</h2> Artificial Intelligence
@@ -59,3 +134,13 @@ Score: 1  Solution :  Artificial Intelligencf<br>
 Score: 1  Solution :  Artificial Intelligencf<br>
 Score: 1  Solution :  Artificial Intelligencf<br>
 Score: 0  Solution :  Artificial Intelligence<br>
+
+<h3>OUTPUT:</h3>
+
+![WhatsApp Image 2026-02-11 at 5 52 25 PM](https://github.com/user-attachments/assets/2e6d0666-fe0d-49d0-8a3a-314e662ae9c6)
+
+![WhatsApp Image 2026-02-11 at 5 52 58 PM](https://github.com/user-attachments/assets/4718e617-3eec-40ff-acf9-46297111a075)
+
+<H3>RESULT:</H3>
+
+Thus the Simple Hill Climb Algorithm Implemented successfully.
